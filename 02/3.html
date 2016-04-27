@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>$apply和$digest</title>
+    <script type="text/javascript" src="../src/js/angular.js"></script>
+</head>
+<body>
+
+<div  ng-app="myApp">
+    <div ng-controller="MessageController">
+        Delayed Message: {{message}}
+    </div>
+</div>
+
+</body>
+
+<script type="text/javascript">
+    angular.module('myApp',[]).controller('MessageController', function($scope) {
+        $scope.getMessage = function() {
+            setTimeout(function() {
+                $scope.$apply(function() {
+                    $scope.message = 'Fetched after 2 seconds';
+                    console.log('message:' + $scope.message);
+                });
+            }, 2000);
+        }
+
+        $scope.getMessage();
+    });
+</script>
+
+

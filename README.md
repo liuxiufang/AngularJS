@@ -14,7 +14,10 @@ AngularJs 是Google开源的JS工具，简称ng, 它是数据双向绑定，MVVM
 
 三、  angularJS的指令系统  
  1. ng-app:初始化一个AngularJS应用程序  
+ `一个页面中默认只加载一个ng-app，并且是第一个，想要多加载需要手动设置`  
  2. ng-controller:指令定义了应用程序控制器  
+ 3. ng-model: 双向绑定数据
+ 
  
 
 

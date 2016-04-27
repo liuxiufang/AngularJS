@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+    <meta charset="utf-8" />
+
+    <title>计算价格</title>
+
+    <script type="text/javascript" src="../src/js/angular.js"></script>
+
+</head>
+<body>
+
+<div ng-controller="PriceCtrl">
+    <label for="money">价格：<input type="text" id="money" ng-model="apple.money"></label>
+    <label for="num">数量：<input type="text" id="num" ng-model="apple.num"></label>
+    <p>邮费：<span>{{apple.fre | currency:"￥"}}</span></p>
+    <p>总价：<span>{{sum() + apple.fre | currency:"￥"}}</span></p>
+</div>
+
+
+
+<script type="text/javascript">
+    var m = angular.module('MyApp',[]);
+    m.controller('PriceCtrl',function($scope){
+        $scope.apple = {
+            money : 5,
+            num : 1,
+            fre : 10,
+            sum : function(){
+                return this.money * this.num;
+            }
+        }
+        $scope.sum = function () {
+            return $scope.apple.money * $scope.apple.num;
+        }
+        $scope.$watch($scope.sum,function(newValue,oldValue) {
+            $scope.apple.fre = newValue >= 100 ? 0 : 10;
+        });
+    });
+</script>
+
+</body>
+</html>
+
