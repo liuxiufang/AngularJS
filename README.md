@@ -20,18 +20,20 @@ AngularJs 是Google开源的JS工具，简称ng, 它是数据双向绑定，MVVM
  
 四、 $scope下的常用方法  
  1. $scope.$watch:监听指定对象  
+
  > 
- //$.scope.$watch(监听对象，回调(新值，旧值)，是否实时监听)
-$scope.$watch($scope.sum,function(newVal,oldVal){
-    $scope.apple.fre = newVal >= 100 ? 0 : 10;
+ //$.scope.$watch(监听对象，回调(新值，旧值)，是否实时监听)  
+$scope.$watch($scope.sum,function(newVal,oldVal){  
+    $scope.apple.fre = newVal >= 100 ? 0 : 10;  
 },true);  
 
-2. $scope.$apply:可以监听数据是否变化从而影响视图（可以支持原生js方法内使用）  
+2. $scope.$apply:可以监听数据是否变化从而影响视图（可以支持原生js方法内使用)  
+
 > 
-setTimeout(function(){
-    $scope.$apply(function(){
-        $scope.name = 'hello word';
-    });
+setTimeout(function(){  
+    $scope.$apply(function(){  
+        $scope.name = 'hello word';  
+    });  
 },1000);  
 
 
