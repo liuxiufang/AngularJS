@@ -16,7 +16,25 @@ AngularJs 是Google开源的JS工具，简称ng, 它是数据双向绑定，MVVM
  1. ng-app:初始化一个AngularJS应用程序  
  `一个页面中默认只加载一个ng-app，并且是第一个，想要多加载需要手动设置`  
  2. ng-controller:指令定义了应用程序控制器  
- 3. ng-model: 双向绑定数据
+ 3. ng-model: 双向绑定数据  
+ 
+四、 $scope下的常用方法  
+ 1. $scope.$watch:监听指定对象  
+ > 
+ //$.scope.$watch(监听对象，回调(新值，旧值)，是否实时监听)
+$scope.$watch($scope.sum,function(newVal,oldVal){
+    $scope.apple.fre = newVal >= 100 ? 0 : 10;
+},true);  
+
+2. $scope.$apply:可以监听数据是否变化从而影响视图（可以支持原生js方法内使用）  
+> 
+setTimeout(function(){
+    $scope.$apply(function(){
+        $scope.name = 'hello word';
+    });
+},1000);  
+
+
  
  
 
