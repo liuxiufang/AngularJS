@@ -27,14 +27,14 @@ $scope.$watch($scope.sum,function(newVal,oldVal){
     $scope.apple.fre = newVal >= 100 ? 0 : 10;  
 },true);  
 
-2. $scope.$apply:可以监听数据是否变化从而影响视图（可以支持原生js方法内使用)  
+ 2. $scope.$apply:可以监听数据是否变化从而影响视图（可以支持原生js方法内使用)  
 
-> 
-setTimeout(function(){  
-    $scope.$apply(function(){  
-        $scope.name = 'hello word';  
-    });  
-},1000);  
+ > 
+ setTimeout(function(){  
+     $scope.$apply(function(){  
+         $scope.name = 'hello word';  
+     });  
+ },1000);  
 
 
  
