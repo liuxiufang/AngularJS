@@ -36,6 +36,50 @@ $scope.$watch($scope.sum,function(newVal,oldVal){
      });  
  },1000);  
 
+五、模板  
+
+   1. 模板内容  
+	   定义模板的内容现在有三种方式： 
+	   * 在需要的地方直接写字符串  
+	   * 外部文件  
+	   * 使用script标签定义的内部文件
+	   
+	外部文件  
+	` <div ng-include="'2.html'"></div>`  
+
+	 使用script标签定义的内部文件  
+	` 
+	 <a ng-click="t='2.html'">Load</a>  
+	 <div ng-include src="t"></div>  
+	`  
+  2. 内容渲染控制  
+ 	
+	* 重复 ng-repeat  (例子见：03/4.html | 03/5.html)
+	
+		$index 当前索引  
+		$first 是否为头元素  
+		$middle 是否为非头非尾元素  
+		$last 是否为尾元素  
+
+	*  赋值 ng-init (例子见：03/6.html)
+	  
+		这个指令可以在模板中直接赋值，它作用于 angular.bootstrap 之前，并且，定义的变量与 $scope 作用域无关。 
+	* 样式 ng-style  
+	
+		` <div ng-style="{width: 100 + 'px', height: 100 + 'px', backgroundColor: 'red'}"> </div>
+	    `
+	* 类 ng-class  
+	
+		` <div ng-controller="TestCtrl" ng-class="cls"></div> `  
+	* ng-class-even 和 ng-class-odd 是和 ng-repeat 配合使用的  (例子见03/8.html)
+		
+
+	    
+	
+ 	
+  
+  
+
 
  
  

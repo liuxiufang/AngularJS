@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>使用 script 标签定义的“内部文件” </title>
+
+    <script type="text/javascript" src="../src/js/angular.js"></script>
+
+</head>
+<body ng-app="">
+主模板
+<a ng-click="t='2.html'">Load</a>
+<div ng-include src="t"></div>
+</body>
+</html>
+

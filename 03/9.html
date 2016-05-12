@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>显示和隐藏 ng-show ng-hide ng-switch</title>
+
+    <script type="text/javascript" src="../src/js/angular.js"></script>
+
+</head>
+<body  ng-app="">
+<div ng-show="true">1</div>
+<div ng-show="false">2</div>
+<div ng-hide="true">3</div>
+<div ng-hide="false">4</div>
+
+<div ng-init="a=2">
+    <ul ng-switch on="a">
+        <li ng-switch-when="1">1</li>
+        <li ng-switch-when="2">2</li>
+        <li ng-switch-default>other</li>
+    </ul>
+</div>
+</body>
+</html>
+

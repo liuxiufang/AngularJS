@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>ng-class-even 和 ng-class-odd 是和 ng-repeat 配合使用的</title>
+
+    <script type="text/javascript" src="../src/js/angular.js"></script>
+
+</head>
+<body  ng-app="">
+<ul ng-init="l=[1,2,3,4]">
+    <li ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="m in l">{{ m }}</li>
+</ul>
+<ul ng-init="w=['a','b','c']">
+    <li ng-class-odd="'odd'" ng-repeat="m in w">{{ m }}</li>
+</ul>
+
+<script>
+
+</script>
+</body>
+</html>
+

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>ng-init</title>
+
+    <script type="text/javascript" src="../src/js/angular.js"></script>
+
+</head>
+<body  ng-app="">
+<div ng-init="testList=[1,2,3];">
+    <ul ng-repeat="test in testList">
+        <li>{{ test }}</li>
+    </ul>
+</div>
+<script>
+
+</script>
+</body>
+</html>
+

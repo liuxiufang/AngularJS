@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>重复ng-repeat</title>
+
+    <script type="text/javascript" src="../src/js/angular.js"></script>
+
+</head>
+<body ng-app="">
+<div ng-controller="testController">
+    <ul ng-repeat="test in testList">
+        <li data-id="{{ $index }}"> {{ test.name }} </li>
+    </ul>
+</div>
+</body>
+<script>
+    testController = function($scope)
+    {
+        $scope.testList = [{name:'A'},{name:'B'},{name:'C'}];
+    }
+</script>
+</html>
+
