@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>ng-click ng-dblclick事件</title>
+
+    <script type="text/javascript" src="../src/js/angular.js"></script>
+
+</head>
+<body  ng-app="">
+<button ng-click="count = count+1" ng-init="0">OK</button>
+<p>按钮被点击了{{ count }}次</p>
+
+<button ng-dblclick="total = total+1" ng-init="0">OK</button>
+<p>按钮被双击了{{ total }}次</p>
+<script>
+
+</script>
+</body>
+</html>
+

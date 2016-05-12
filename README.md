@@ -91,7 +91,61 @@ $scope.$watch($scope.sum,function(newVal,oldVal){
     		<li ng-switch-when="2">2</li>    
     		<li ng-switch-default>other</li>    
    		 </ul>  
-    	</div>
+    	</div>  
+  
+
+	 * ng-src 控制src属性:
+	
+	` <img ng-src="{{'../src/image/logo.gif'}}">`  
+	* ng-href 控制 href 属性：  
+	
+	` <a ng-href="{{ 'http://www.baidu.com'}}">here</a>`  
+	* ng-checked 选中状态:  
+	
+ 			<p>My cars ng-checked:</p>
+			<input type="checkbox" ng-model="all">全选
+			<input type="checkbox" ng-checked="all">奥迪
+			<input type="checkbox" ng-checked="all">奔驰 
+	例子见03/10.html  
+	* ng-selected 被选择状态 
+	* ng-disabled 禁用状态
+	* ng-multiple 多选状态
+	* ng-readonly 只读状态
+	* ng-options  选择的值是一个对象 
+	  
+	注意： 上面的这些只是单向绑定，即只是从数据到展示，不能反作用于数据。要双向绑定，还是要使用 ng-model 。
+
+  3. 事件  
+  
+	* ng-change  (例子见04/1.html)
+	ng-change 指令用于告诉 AngularJS 在 HTML 元素值改变时需要执行的操作,注意一点ng-change搭配ng-model来进行操作。  
+	AngularJS ng-change 指令指令不会覆盖原生的 onchange 事件, 如果触发该事件，ng-change 表达式与原生的 onchange 事件都会执行  
+	ng-change 事件在值的每次改变时触发，它不需要等待一个完成的修改过程，或等待失去焦点的动作。  
+	ng-change 事件只针对输入框值的真实修改，而不是通过 JavaScript 来修改。  
+
+	* ng-click 点击  (例子见04/2.html)
+	ng-click 指令告诉了 AngularJS HTML 元素被点击后需要执行的操作。  
+
+ 	* ng-dblclick 双击 (例子见04/2.html)
+ 	ng-dblclick 指令用于告诉 AngularJS 在鼠标鼠标 HTML 元素时需要执行的操作并且不会覆盖原始的ondblclick事件，ng-dblclick 表达式与原始的 ondblclick 事件将都会执行。  
+	
+	* ng-mousedown 鼠标在指定的 HTML 元素上按下时要执行的操作。 (例子见04/3.html)  
+	
+		鼠标点击依次执行的顺序:
+
+    	Mousedown  
+    	Mouseup  
+    	Click  
+	* ng-mouseenter 鼠标在指定的 HTML 元素上穿过时要执行的操作。 (例子见04/3.html)  
+	* ng-mouseleave 鼠标在指定的 HTML 元素上离开时要执行的操作。 (例子见04/3.html)  
+	* ng-mousemove 鼠标在指定的 HTML 元素上移动时要执行的操作。 (例子见04/3.html)  
+	* ng-mouseover  鼠标在指定的 HTML 移动到元素上时要执行的操作。 (例子见04/3.html)  
+	* ng-mouseup  鼠标在指定的 HTML 松开鼠标时要执行的操作。 (例子见04/3.html)
+	* ng-submit 指令用于在表单提交后执行指定函数。   (例子见04/3.html)
+	
+	
+	
+
 	
 		
 		

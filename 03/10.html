@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>属性</title>
+
+    <script type="text/javascript" src="../src/js/angular.js"></script>
+
+</head>
+<body ng-app="">
+<a ng-href="{{ 'http://www.baidu.com'}}">here</a>
+<img ng-src="{{'../src/image/logo.gif'}}">
+
+<p>My cars ng-checked:</p>
+<input type="checkbox" ng-model="all">全选
+<input type="checkbox" ng-checked="all">奥迪
+<input type="checkbox" ng-checked="all">奔驰
+<p>点击 "Check all" 选择所有的车。</p>
+
+点击复选框选择 BMW 选项 ng-selected:
+<input type="checkbox" ng-model="mySel">
+<p>我喜欢的车:</p>
+<select>
+    <option>奥迪</option>
+    <option ng-selected="mySel">宝马</option>
+    <option>奔驰</option>
+</select>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+    <p>ng-options: </p>
+    <select ng-model="car" ng-options="x.site for x in sites">
+    </select>
+    <h1>你选择的是: {{car.site}}</h1>
+    <p>网址为: {{car.url}}</p>
+</div>
+
+Readonly:
+<input type="text" ng-readonly="true" >
+
+
+<script>
+    myCtrl = function($scope)
+    {
+        $scope.sites = [
+            {site : "Google", url : "http://www.google.com"},
+            {site : "Runoob", url : "http://www.runoob.com"},
+            {site : "Taobao", url : "http://www.taobao.com"}
+        ];
+
+    }
+
+</script>
+</body>
+</html>
+
