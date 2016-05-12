@@ -71,7 +71,29 @@ $scope.$watch($scope.sum,function(newVal,oldVal){
 	* 类 ng-class  
 	
 		` <div ng-controller="TestCtrl" ng-class="cls"></div> `  
-	* ng-class-even 和 ng-class-odd 是和 ng-repeat 配合使用的  (例子见03/8.html)
+	* ng-class-even 和 ng-class-odd 是和 ng-repeat 配合使用的  (例子见03/8.html)  
+	* 显示和隐藏 ng-show ng-hide  
+	
+	  <div ng-show="true">1</div>  
+    
+		 <div ng-show="false">2</div>  
+    
+		  <div ng-hide="true">3</div>  
+    
+		  <div ng-hide="false">4</div>  
+
+	* ng-switch 是根据一个值来决定哪个节点显示，其它节点移除 
+	 
+	
+	        <div ng-init="a=2">  
+    	    <ul ng-switch on="a">  
+   			<li ng-switch-when="1">1</li>      
+    		<li ng-switch-when="2">2</li>    
+    		<li ng-switch-default>other</li>    
+   		 </ul>  
+    	</div>
+	
+		
 		
 
 	    
