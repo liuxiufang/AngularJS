@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>form验证字段</title>
+
+    <script type="text/javascript" src="../src/js/angular.js"></script>
+
+</head>
+<body  ng-app="">
+<form name="test_form">
+    <input type="text" name="username" required ng-model="username"  />
+    <span ng-style="{color:'red'}" ng-show="test_form.username.$dirty && test_form.username.$invalid">
+        <span ng-show="test_form.username.$error.required">用户名是必须的。</span>
+    </span>
+    <input type="email" required ng-model="email" name="email"/>
+    <span ng-style="{color:'red'}" ng-show="test_form.email.$dirty && test_form.email.$invalid ">
+        <span ng-show="test_form.email.$error.required">邮箱必填</span>
+        <span ng-show="test_form.email.$error.email">非法的邮箱</span>
+    </span>
+    <input type="submit" ng-disabled="test_form.username.$dirty && test_form.username.$invalid || test_form.email.$dirty && test_form.email.$invalid "/>
+</form>
+<script>
+
+</script>
+</body>
+</html>
+

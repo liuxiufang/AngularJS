@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>checkbox radio </title>
+
+    <script type="text/javascript" src="../src/js/angular.js"></script>
+
+</head>
+<body  ng-app="">
+<form name="test_form">
+    <input type="checkbox" name="sex" ng-model="sex" ng-true-value="0" ng-false-value="1" />
+    <span>{{ sex }}</span>
+    <div>
+        <input type="radio" name="a" ng-model="a" value="AA" />男
+        <input type="radio" name="a" ng-model="a" value="BB" />女
+        <span>{{ a }}</span>
+    </div>
+    <div  ng-init="o=[0,1,2,3];">
+        <select ng-model="a" ng-options="x for x in o" ng-change="show()">
+            <option value="">可以加这个空值</option>
+        </select>
+    </div>
+    <div  ng-init="b=[{name: 'AA', g: '00'},
+                  {name: 'BB', g: '11'},
+                  {name: 'CC', g: '00'}]; a=o[1];">
+        <select ng-model="a" ng-options="x.name group by x.g for x in b" ng-change="show()" >
+        </select>
+    </div>
+</form>
+<script>
+
+</script>
+</body>
+</html>
+

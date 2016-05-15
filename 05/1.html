@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>form标签</title>
+
+    <script type="text/javascript" src="../src/js/angular.js"></script>
+
+</head>
+<body  ng-app="">
+<form id="myForm" name="myForm" ng-controller="testController">
+<input type="text" required name="username"  ng-model="username" onerror="alert('username')" />
+    <input type="text" name="age" ng-model="age" onerror="alert('age')" />
+    <img src="image.gif" onerror="alert('The image could not be loaded.')" />
+    <button ng-click="show()">OK</button>
+</form>
+<script>
+
+</script>
+</body>
+</html>
+

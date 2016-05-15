@@ -143,6 +143,82 @@ $scope.$watch($scope.sum,function(newVal,oldVal){
 	* ng-mouseup  鼠标在指定的 HTML 松开鼠标时要执行的操作。 (例子见04/3.html)
 	* ng-submit 指令用于在表单提交后执行指定函数。   (例子见04/3.html)
 	
+ 4. 表单控件  
+ 
+	表单控件类的模板指令，最大的作用是它预定义了需要绑定的数据的格式，这样方便快捷的处理模板和数据
+	* form
+	
+  		form标签必须要指定name 和 ng-controller,并且每一个控件都要绑定一个变量，form 和控件的名字，即是$scope中的相关市里的引用变量名称。
+
+	  		<form id="myForm" name="myForm" ng-controller="testController"> 
+
+			<input type="text" required name="username"  ng-model="username" onerror="alert('username')" />
+   			<input type="text" name="age" ng-model="age" onerror="alert('age')"/>
+    		 <img src="image.gif" onerror="alert('The image could not be loaded.')" />
+			<button ng-click="show()">OK</button>
+		</form>
+
+	除去对象的方法与属性， form 这个标签本身有一些动态类可以使用： 
+	
+    1. ng-valid 当表单验证通过时的设置  
+    2. ng-invalid 当表单验证失败时的设置  
+    3. ng-pristine 表单的未被动之前拥有  
+    4. ng-dirty 表单被动过之后拥有  
+    
+	form 对象的属性有：  
+
+    1. $pristine 表单是否未被动过  
+    2. $dirty 表单是否被动过  
+    3. $valid 表单是否验证通过  
+    4. $invalid 表单是否验证失败  
+    5. $error 表单的验证错误  （对象包含所有字段的验证信息）  
+    
+	注意，这里的失败信息是按序列取的一个。比如，如果一个字段既要求 required ，也要求 minlength ，那么当它为空时， $error 中只有 required 的失败信息。只输入一个字符之后， required 条件满足了，才可能有 minlength 这个失败信息。  
+	
+		<form name="test_form">
+	    <input type="text" name="username" required ng-model="username"  />
+	    <span ng-style="{color:'red'}" ng-show="test_form.username.$dirty && test_form.username.$invalid">
+	        <span ng-show="test_form.username.$error.required">用户名是必须的。</span>
+	    </span>
+	    <input type="email" required ng-model="email" name="email"/>
+	    <span ng-style="{color:'red'}" ng-show="test_form.email.$dirty && test_form.email.$invalid ">
+	        <span ng-show="test_form.email.$error.required">邮箱必填</span>
+	        <span ng-show="test_form.email.$error.email">非法的邮箱</span>
+	    </span>
+	    <input type="submit" ng-disabled="test_form.username.$dirty && test_form.username.$invalid || test_form.email.$dirty && test_form.email.$invalid "/>  </form>  
+
+	* input 是数据的最主要的入口。
+	
+		1. name 名字
+		2. ng-model 绑定的数据 
+		3. required 是否必填
+		4. ng-required 是否必填
+		5. ng-minlength 最小长度 
+		6. ng-maxlength 最大长度
+		7. ng-pattern 匹配模式 
+		8. ng-change 值变化时的回调 
+		9. ng-trim 是否有空格  ng-trim=true。    
+
+ ```php 
+
+		<form name="yourForm">
+			<input type="text" name="pattern" required ng-trim="true" ng-model="pattern" ng-pattern="/^[0-9]*[1-9][0-9]*$/" ng-maxlength="6" maxlength="6"/>    
+		 	<span ng-show="yourForm.pattern.$dirty && yourForm.pattern.$invalid">数量必填</span>    
+		 	<input type="url" name="url" required ng-model="url" />    
+			<span ng-show="yourForm.url.$dirty && yourForm.url.$invalid">地址错误</span>    
+	 	</form>
+```  
+
+input 控件，它还有一些扩展，这些扩展有些有自己的属性：   
+		1. input type="number" 多了 number 错误类型，多了 max ， min 属性。     
+		2. input type="url" 多了 url 错误类型。   
+		3. input type="email" 多了 email 错误类型。   
+
+
+
+ 
+	
+	
 	
 	
 
