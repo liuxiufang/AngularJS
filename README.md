@@ -207,7 +207,7 @@ $scope.$watch($scope.sum,function(newVal,oldVal){
 		8. ng-change 值变化时的回调 
 		9. ng-trim 是否有空格  ng-trim=true。    
 
- ```php 
+ 	```php 
 
 		<form name="yourForm">
 			<input type="text" name="pattern" required ng-trim="true" ng-model="pattern" ng-pattern="/^[0-9]*[1-9][0-9]*$/" ng-maxlength="6" maxlength="6"/>    
@@ -215,7 +215,7 @@ $scope.$watch($scope.sum,function(newVal,oldVal){
 		 	<input type="url" name="url" required ng-model="url" />    
 			<span ng-show="yourForm.url.$dirty && yourForm.url.$invalid">地址错误</span>    
 	 	</form>
-```  
+	```    
 
 input 控件，它还有一些扩展，这些扩展有些有自己的属性：   
 		1. input type="number" 多了 number 错误类型，多了 max ， min 属性。     
@@ -225,8 +225,9 @@ input 控件，它还有一些扩展，这些扩展有些有自己的属性：
 
 六、 模板中的过滤器  
 1. 排序 orderBy  
-	 orderBy 是模板当中排序用的过滤器标签，它可以像sort函数那样支持一个排序函数，也可以简单地指定一个属性名进行操作   
-  
+ orderBy 是模板当中排序用的过滤器标签，它可以像sort函数那样支持一个排序函数，也可以简单地指定一个属性名进行操作   
+ 
+```php 
 		<div ng-controller="TestCtrl">
 		    {{ data | orderBy: 'age' }} <br />
 		    {{ data | orderBy: '-age' }} <br />
@@ -245,9 +246,11 @@ input 控件，它还有一些扩展，这些扩展有些有自己的属性：
 
     	angular.bootstrap(document.documentElement);
 		</script>  
+```
 
 2. filter 过滤标签，对模板内容进行标签过滤，不区分大小写  
 
+```php  
 		<div ng-controller="TestCtrl">
 		    {{ data | filter: 'a' }} <br />  
 		    {{ data | filter: '!A' }} <br />  
@@ -265,8 +268,11 @@ input 控件，它还有一些扩展，这些扩展有些有自己的属性：
 		    }
 		    angular.bootstrap(document.documentElement);</script>  
 
+```
+
 3. 时间转换 对模板中的内容进行时间转换  
 
+```php  
 		<div ng-controller="TestCtrl">
 		    {{ a | date: 'yyyy-MM-dd HH:mm:ss' }}
 		</div>
@@ -277,7 +283,8 @@ input 控件，它还有一些扩展，这些扩展有些有自己的属性：
 		    }
 		
 		    angular.bootstrap(document.documentElement);
-		</script>  
+		</script> 
+``` 
 
 4. limitTo 截取标签，截取模板内容  
 
@@ -315,7 +322,7 @@ input 控件，它还有一些扩展，这些扩展有些有自己的属性：
             }]);
 	</script>
 	</body>    
-
+```
 
 首先看 ng-view 这个 directive ，它是一个标记“锚点作用区”的指令。  
 锚点作用区的功能，就是让锚点路由定义时的那些模板， controller 等，它们产生的 HTML 代码放在作用区内。  
@@ -324,12 +331,13 @@ input 控件，它还有一些扩展，这些扩展有些有自己的属性：
 
 一般变量模板的标识符都已经默认定义好，但是如果开发人员想自己定义模板变量标识标签.  
 	
-	
+```php  
 	 angular.bootstrap(document.documentElement,
 	  [function($interpolateProvider){
 	    $interpolateProvider.startSymbol('[[');
 	    $interpolateProvider.endSymbol(']]');
 	  }]);   
+```
 
 八、  HTTP请求  
 	1. 请求处理，请求并且返回一个扩充success方法和error方法的promise对象，还可以增加回调函数   
@@ -340,7 +348,7 @@ $http 接受的配置项有：
 	* params GET请求的参数  
 	* data post请求的参数     
  
-
+```php  
 	<body ng-app="MyApp" ng-controller="TestController">
 	<ul>
 	    <li ng-repeat="x in list">
@@ -353,12 +361,14 @@ $http 接受的配置项有：
 	        $http.get("indexController.php")
 	                .success(function(response) {$scope.list = response.data;});
 	    });
-	</script>  
+	</script> 
+``` 
 九、 其他  
  1. 模板单独使用  
 	
 单独运行模板也必须和DOM紧密相关，定义时必须是html标签包裹，这样才能创建DOM,并且渲染页面时，必须传入$scope,之后便可以$compile就可以得到一个渲染好的节点对象  
 
+```php  
 	<body ng-app="MyApp" ng-controller="TestController">
 	<div>
     <p>{{ a }}</p>
@@ -376,12 +386,15 @@ $http 接受的配置项有：
     });
 	</script>
 	</body>  
+```
   
  2. 自定义模块  
  
+```php  
 	var my_module = angular.module('MyModule', [], function(){
     console.log('here');
-	});  
+	}); 
+``` 
 
 这段代码定义了一个叫做 MyModule 的模块， my_module 这个引用可以在接下来做其它的一些事，比如定义服务。  
 
@@ -389,6 +402,7 @@ $http 接受的配置项有：
 
  ng在提供服务的过程涉及它的依赖注入机制，也就是通过provider这个注入控制器，来使操作的，注入机制通过调用一个provider的$get()方法，把得到的内容作为控制器的参数进行相关调用，  
 	
+```php  
 	//这是一个provider
 	var pp = function(){
 	  this.$get = function(){
@@ -408,26 +422,30 @@ $http 接受的配置项有：
 	  }
 	);  
 
+```
 这里分为factory方法，和service方法，两者的区别在于，service要求提供一个“构造方法”，并且得到一个object，而factory要求提供的是$get()方法，得到一个数字或者字符串，他们之间的关系  
 
 	
 
 第一个是factory方法，module的factory是一个引用，这个方法直接把一个函数当成一个对象的$get()方法，这样就可以不用显示地定义一个provider：  
 
+```php  
 	var app = angular.module('Demo', [], function($provide){
 	  $provide.factory('PP', function(){
 	    return {'hello': '123'};
 	  });
 	});
+```
     app.controller('TestCtrl', function($scope, PP){ console.log(PP) });  
 第二个是service方法，  
+```php  
 	 var app = angular.module('Demo', [], function(){ });
 		app.service = function(name, constructor){
 		  app.factory(name, function(){
 		    return (new constructor());
 		  });
 	}
-  
+  ```
   
 	
 
