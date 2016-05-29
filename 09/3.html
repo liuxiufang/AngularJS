@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>自定义</title>
+
+    <script type="text/javascript" src="../src/js/angular.js"></script>
+
+</head>
+<body ng-app="MyApp" ng-controller="TestController">
+<div>
+    <p></p>
+</div>
+<script>
+    var app = angular.module('MyApp', [], function($provide){
+        $provide.factory('PP', function(){
+            return {'hello': '123'};
+        });
+    });
+    app.controller('TestController', function($scope, PP){ console.log(PP) });
+
+
+//var app = angular.module('MyApp', [], function(){ });
+//app.factory('PP', function(){return {'abc': '123'}});
+//app.controller('TestController', function($scope, PP){ console.log(PP) });
+
+
+
+//    var app = angular.module('MyApp', ['MyModule'], angular.noop);
+//    app.controller('TestController', function($scope, S1, S2){
+//        console.log(S1)
+//        console.log(S2.see())
+//    });
+</script>
+</body>
+</html>
+

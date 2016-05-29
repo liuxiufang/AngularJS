@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>orderBy过滤器</title>
+
+    <script type="text/javascript" src="../src/js/angular.js"></script>
+
+</head>
+<body  ng-app="">
+<div ng-controller="TestCtrl">
+    {{ data | orderBy: 'age' }} <br />
+    {{ data | orderBy: '-age' }} <br />
+    {{ data | orderBy: '-age' | limitTo: 2 }} <br />
+    {{ data | orderBy: ['-age', 'name'] }} <br />
+</div>
+<script>
+    var TestCtrl = function($scope){
+        $scope.data = [
+            {name: 'B', age: 4},
+            {name: 'A', age: 1},
+            {name: 'D', age: 3},
+            {name: 'C', age: 3},
+        ];
+    }
+
+    angular.bootstrap(document.documentElement);
+</script>
+</body>
+</html>
+

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>filter过滤器</title>
+
+    <script type="text/javascript" src="../src/js/angular.js"></script>
+
+</head>
+<body  ng-app="">
+<div ng-controller="TestCtrl">
+    {{ data | filter: 'a' }} <br />
+    {{ data | filter: '!A' }} <br />
+    {{ data | filter: 'd'}} <br />
+    {{ data | filter: 1}} <br />
+</div>
+
+<script type="text/javascript">
+    var TestCtrl = function($scope){
+        $scope.data = [
+            {name: 'B', age: 4},
+            {name: 'A', age: 1},
+            {name: 'D', age: 3},
+            {name: 'C', age: 3},
+        ];
+    }
+
+    angular.bootstrap(document.documentElement);
+</script>
+</body>
+</html>
+

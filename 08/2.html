@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>ajax</title>
+
+    <script type="text/javascript" src="../src/js/angular.js"></script>
+
+</head>
+<body ng-app="MyApp" ng-controller="TestController">
+<ul>
+    <li ng-repeat="x in list">
+        {{ x.username + ', ' + x.age }}
+    </li>
+</ul>
+<script>
+    var app = angular.module('MyApp', []);
+    app.controller('TestController', function($q, $http,$scope) {
+        var p1 = $http.get("indexController.php");
+        var p2 = $http.get("indexController.php");
+        p1.success(function(res){$scope.list = res.data});
+        var all = $q.all([p1, p2]);
+        all.then(function(res){console.log(res[0])});
+    });
+</script>
+</body>
+</html>
+

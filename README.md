@@ -142,6 +142,14 @@ $scope.$watch($scope.sum,function(newVal,oldVal){
 	* ng-mouseover  鼠标在指定的 HTML 移动到元素上时要执行的操作。 (例子见04/3.html)  
 	* ng-mouseup  鼠标在指定的 HTML 松开鼠标时要执行的操作。 (例子见04/3.html)
 	* ng-submit 指令用于在表单提交后执行指定函数。   (例子见04/3.html)
+	* ng-copy 当文本框的值复制时发生改变 (例子见04/4.html)  
+	* ng-bind-html 通过安全的方式把内容绑定到html元素上  
+	* angular.isArray 判断是否为数组,如果引用的是数组返回 true (例子见04/6.html) 
+	* angular.isNumber() 判断是否为数字  
+	* angular.bootstrap() 手动启动angular js
+	* angular.module()  创建，注册或检索 AngularJS 模块  
+	` angular.module('myApp', []).controller('userCtrl', function($scope) { }`  
+	* angular.noop() 空函数
 	
  4. 表单控件  
  
@@ -213,6 +221,227 @@ input 控件，它还有一些扩展，这些扩展有些有自己的属性：
 		1. input type="number" 多了 number 错误类型，多了 max ， min 属性。     
 		2. input type="url" 多了 url 错误类型。   
 		3. input type="email" 多了 email 错误类型。   
+		
+
+六、 模板中的过滤器  
+1. 排序 orderBy  
+	 orderBy 是模板当中排序用的过滤器标签，它可以像sort函数那样支持一个排序函数，也可以简单地指定一个属性名进行操作   
+  
+		<div ng-controller="TestCtrl">
+		    {{ data | orderBy: 'age' }} <br />
+		    {{ data | orderBy: '-age' }} <br />
+		    {{ data | orderBy: '-age' | limitTo: 2 }} <br />
+		    {{ data | orderBy: ['-age', 'name'] }} <br />
+		</div>
+		<script>
+    		var TestCtrl = function($scope){
+        	$scope.data = [
+	            {name: 'B', age: 4},
+	            {name: 'A', age: 1},
+	            {name: 'D', age: 3},
+	            {name: 'C', age: 3},
+        	];
+    	}
+
+    	angular.bootstrap(document.documentElement);
+		</script>  
+
+2. filter 过滤标签，对模板内容进行标签过滤，不区分大小写  
+
+		<div ng-controller="TestCtrl">
+		    {{ data | filter: 'a' }} <br />  
+		    {{ data | filter: '!A' }} <br />  
+		    {{ data | filter: 'd'}} <br />  
+		    {{ data | filter: 1}} <br />  
+		</div>  
+	    <script>
+		    var TestCtrl = function($scope){
+		        $scope.data = [
+		            {name: 'B', age: 4},
+		            {name: 'A', age: 1},
+		            {name: 'D', age: 3},
+		            {name: 'C', age: 3},
+		        ];
+		    }
+		    angular.bootstrap(document.documentElement);</script>  
+
+3. 时间转换 对模板中的内容进行时间转换  
+
+		<div ng-controller="TestCtrl">
+		    {{ a | date: 'yyyy-MM-dd HH:mm:ss' }}
+		</div>
+		
+		<script type="text/javascript">
+		    var TestCtrl = function($scope){
+		        $scope.a = ((new Date().valueOf()));
+		    }
+		
+		    angular.bootstrap(document.documentElement);
+		</script>  
+
+4. limitTo 截取标签，截取模板内容  
+
+		{{ [1,2,3,4,5] | limitTo: 2 }}
+		{{ [1,2,3,4,5] | limitTo: -3 }}  
+
+5. lowercase uppercase 大小格式转换  
+
+		{{ 'abc' | uppercase }}
+		{{ 'ABCd你好' | lowercase }}  
+
+七、 锚点路由  
+
+1. 使用锚点前，必须要先定义,$routeProvider用这个服务来定义
+
+```php  
+
+	<body  ng-app="routingDemoApp">  
+	<ul>
+	    <li><a href="#/">首页</a></li>
+	    <li><a href="#/new">新闻</a></li>
+	    <li><a href="#/comment">评论</a></li>
+	</ul>
+	<div ng-view></div>
+	<script type="text/javascript" src="../src/js/route.js"></script>
+	<script>
+	    angular.module('routingDemoApp',['ngRoute'])
+            .config(['$routeProvider', function ($routeProvider) {
+                $routeProvider
+                    .when('/',{template:'这是首页页面'})
+                      .when('/new',{template:'这是新闻分类页面'})
+                    .when('/new',{templateUrl:'2.html'})
+                    .when('/comment',{template:'这是评论页面'})
+                    .otherwise({redirectTo:'/'});
+            }]);
+	</script>
+	</body>    
+
+
+首先看 ng-view 这个 directive ，它是一个标记“锚点作用区”的指令。  
+锚点作用区的功能，就是让锚点路由定义时的那些模板， controller 等，它们产生的 HTML 代码放在作用区内。  
+
+2. 定义模板变量的表示符  
+
+一般变量模板的标识符都已经默认定义好，但是如果开发人员想自己定义模板变量标识标签.  
+	
+	
+	 angular.bootstrap(document.documentElement,
+	  [function($interpolateProvider){
+	    $interpolateProvider.startSymbol('[[');
+	    $interpolateProvider.endSymbol(']]');
+	  }]);   
+
+八、  HTTP请求  
+	1. 请求处理，请求并且返回一个扩充success方法和error方法的promise对象，还可以增加回调函数   
+	
+$http 接受的配置项有：  
+	* method 方法  
+	* url 路径  
+	* params GET请求的参数  
+	* data post请求的参数     
+ 
+
+	<body ng-app="MyApp" ng-controller="TestController">
+	<ul>
+	    <li ng-repeat="x in list">
+	        {{ x.username + ', ' + x.age }}
+	    </li>
+	</ul>
+	<script>
+	    var app = angular.module('MyApp', []);
+	    app.controller('TestController', function($scope, $http) {
+	        $http.get("indexController.php")
+	                .success(function(response) {$scope.list = response.data;});
+	    });
+	</script>  
+九、 其他  
+ 1. 模板单独使用  
+	
+单独运行模板也必须和DOM紧密相关，定义时必须是html标签包裹，这样才能创建DOM,并且渲染页面时，必须传入$scope,之后便可以$compile就可以得到一个渲染好的节点对象  
+
+	<body ng-app="MyApp" ng-controller="TestController">
+	<div>
+    <p>{{ a }}</p>
+	</div>
+	<script>
+    var app = angular.module('MyApp', []);
+    app.controller('TestController', function($scope,$element,$compile) {
+        $scope.a = '123';
+        $scope.set = function(){
+            var tpl = $compile('<p>hello {{ a }}</p>');
+            var e = tpl($scope);
+            $element.append(e);
+        }
+        $scope.set();
+    });
+	</script>
+	</body>  
+  
+ 2. 自定义模块  
+ 
+	var my_module = angular.module('MyModule', [], function(){
+    console.log('here');
+	});  
+
+这段代码定义了一个叫做 MyModule 的模块， my_module 这个引用可以在接下来做其它的一些事，比如定义服务。  
+
+3. 自定义服务  
+
+ ng在提供服务的过程涉及它的依赖注入机制，也就是通过provider这个注入控制器，来使操作的，注入机制通过调用一个provider的$get()方法，把得到的内容作为控制器的参数进行相关调用，  
+	
+	//这是一个provider
+	var pp = function(){
+	  this.$get = function(){
+	    return {'haha': '123'};
+	  }
+	}
+
+	//我在模块的初始化过程当中, 定义了一个叫 PP 的服务
+	var app = angular.module('Demo', [], function($provide){
+	  $provide.provider('PP', pp);
+	});
+
+	//PP服务实际上就是 pp 这个 provider 的 $get() 方法返回的东西
+	app.controller('TestCtrl',
+	  function($scope, PP){
+	    console.log(PP);
+	  }
+	);  
+
+这里分为factory方法，和service方法，两者的区别在于，service要求提供一个“构造方法”，并且得到一个object，而factory要求提供的是$get()方法，得到一个数字或者字符串，他们之间的关系  
+
+	
+
+第一个是factory方法，module的factory是一个引用，这个方法直接把一个函数当成一个对象的$get()方法，这样就可以不用显示地定义一个provider：  
+
+	var app = angular.module('Demo', [], function($provide){
+	  $provide.factory('PP', function(){
+	    return {'hello': '123'};
+	  });
+	});
+    app.controller('TestCtrl', function($scope, PP){ console.log(PP) });  
+第二个是service方法，  
+	 var app = angular.module('Demo', [], function(){ });
+		app.service = function(name, constructor){
+		  app.factory(name, function(){
+		    return (new constructor());
+		  });
+	}
+  
+  
+	
+
+
+
+
+
+			
+
+
+
+
+
+	
 
 
 

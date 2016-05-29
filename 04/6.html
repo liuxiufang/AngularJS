@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>angular.isArray如果引用的是数组返回 true</title>
+
+    <script type="text/javascript" src="../src/js/angular.js"></script>
+
+</head>
+<body>
+<div ng-app="myApp" ng-controller="formCtrl">
+</div>
+
+<script>
+   var app = angular.module("myApp",[]);
+    app.controller('formCtrl',function($scope){
+        var user= {"data":[{"id":"1","username":"liuxiufang","age":"10","sex":"1"},{"id":"2","username":"huzaixing","age":"100","sex":"1"},{"id":"3","username":"mengdandan","age":"10","sex":"1"}]};
+        if(angular.isArray(user.data)){
+            alert(1);
+        }else{
+            alert(2);
+        }
+    })
+</script>
+</body>
+</html>
+

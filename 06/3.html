@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>date 时间格式转换</title>
+
+    <script type="text/javascript" src="../src/js/angular.js"></script>
+
+</head>
+<body  ng-app="">
+<div ng-controller="TestCtrl">
+    {{ a | date: 'yyyy-MM-dd HH:mm:ss' }}
+</div>
+
+<script type="text/javascript">
+    var TestCtrl = function($scope){
+        $scope.a = ((new Date().valueOf()));
+    }
+
+    angular.bootstrap(document.documentElement);
+</script>
+</body>
+</html>
+

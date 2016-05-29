@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>模板单独处理</title>
+
+    <script type="text/javascript" src="../src/js/angular.js"></script>
+
+</head>
+<body ng-app="MyApp" ng-controller="TestController">
+<div>
+    <p>{{ a }}</p>
+</div>
+<script>
+    var app = angular.module('MyApp', []);
+    app.controller('TestController', function($scope,$element,$compile) {
+        $scope.a = '123';
+        $scope.set = function(){
+            var tpl = $compile('<p>hello {{ a }}</p>');
+            var e = tpl($scope);
+            $element.append(e);
+        }
+        $scope.set();
+    });
+</script>
+</body>
+</html>
+

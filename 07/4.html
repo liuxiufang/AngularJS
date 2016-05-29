@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>锚点</title>
+
+    <script type="text/javascript" src="../src/js/angular.js"></script>
+
+</head>
+<body  ng-app="ngView">
+<h2>锚点</h2>
+<ul>
+    <li><a href="#/home">首页</a></li>
+    <li><a href="#/new">书籍</a></li>
+</ul>
+<div ng-view></div>
+<script type="text/javascript" src="../src/js/route.js"></script>
+<script type="text/javascript">
+
+    angular.module('ngView', ['ngRoute'],
+            function($routeProvider){
+                $routeProvider.when('/new',
+                        {
+                            templateUrl: 'tpl.html',
+                            controller: function($scope){
+                                $scope.title = '你好吗';
+                            }
+                        }
+                );
+            }
+    )
+</script>
+</body>
+</html>
+
